@@ -13,18 +13,22 @@ const App: React.FC = () => {
 
   // Logic for Service Fee Percentage
   const serviceFee = useMemo(() => {
-    const isSmallTruck = truckType === 'Box Truck' || truckType === 'Hotshot';
+    const isSmallTruck = truckType === 'Box Truck';
     
     if (isSmallTruck) {
       if (fleetSize === '1') return 10;
       if (fleetSize === '2-5') return 8;
       if (fleetSize === '6-20') return 7;
+      if (fleetSize === '21-50') return 6;
+
       return 6; // 21-50, 51-100, 101+
     } else {
-      if (fleetSize === '1') return 6;
-      if (fleetSize === '2-5') return 4;
-      if (fleetSize === '6-20') return 3.5;
-      return 3; // 21-50, 51-100, 101+
+      if (fleetSize === '1') return 7;
+      if (fleetSize === '2-5') return 5.5;
+      if (fleetSize === '6-20') return 4.5;
+      if (fleetSize === '21-50') return 4;
+
+      return 4; //  51-100, 101+
     }
   }, [fleetSize, truckType]);
 
